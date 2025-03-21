@@ -21,7 +21,7 @@ public class AgendaView {
     }
 
     public Anotacao obterDadosAnotacao() {
-        scanner.nextLine(); // Limpar buffer
+        scanner.nextLine(); 
         System.out.print("Título: ");
         String titulo = scanner.nextLine();
         System.out.print("Descrição: ");
@@ -34,7 +34,7 @@ public class AgendaView {
     }
 
     public String solicitarTituloParaBusca() {
-        scanner.nextLine(); // Limpar buffer
+        scanner.nextLine();
         System.out.print("Digite o título da anotação: ");
         return scanner.nextLine();
     }
