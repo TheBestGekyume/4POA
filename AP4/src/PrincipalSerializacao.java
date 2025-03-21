@@ -1,4 +1,4 @@
-package pjrSerializacao;
+package AP4.src;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -10,25 +10,32 @@ import java.io.ObjectOutputStream;
 
 public class PrincipalSerializacao {
 	public static void main(String[] args) {
-		Pessoa p = new Pessoa("Clara", 30, "99999");
+		Desenvolvedor dev = new Desenvolvedor(
+				"Gekyume",
+				19,
+				"523.290.142-00",
+				"CLT",
+				7865.89);
 		try {
-			File f = new File("c:/a/");
-			if(!f.exists()) f.mkdir();
-			FileOutputStream arqOSer = new FileOutputStream("c:/a/clara.ser");
+
+			File dir = new File("C:/Users/Gekyume Serna/Documents/GitHub/4POA/AP4/data");
+			if(!dir.exists()) dir.mkdir();
+			FileOutputStream arqOSer = new FileOutputStream("C:/Users/Gekyume Serna/Documents/GitHub/4POA/AP4/data/data.ser");
 			ObjectOutputStream oOSer = new ObjectOutputStream(arqOSer);
-			oOSer.writeObject(p);
+			oOSer.writeObject(dev);
 			oOSer.close();
-			System.out.println("---------------Antes de alterar idade-------------");
-			System.out.println(p);
-			p.setIdade(40);
-			System.out.println("---------------Depois de alterar idade-------------");
-			System.out.println(p);
-			FileInputStream arqISer = new FileInputStream("c:/a/clara.ser");
+			System.out.println("---------------Antes de alterar idade e salário-------------");
+			System.out.println(dev);
+			dev.setIdade(20);
+			dev.setSalario(8000);
+			System.out.println("---------------Depois de alterar idade e salário-------------");
+			System.out.println(dev);
+			FileInputStream arqISer = new FileInputStream("C:/Users/Gekyume Serna/Documents/GitHub/4POA/AP4/data/data.ser");
 			ObjectInputStream iOSer = new ObjectInputStream(arqISer);
-			p = (Pessoa) iOSer.readObject();
+			dev = (Desenvolvedor) iOSer.readObject();
 			iOSer.close();
 			System.out.println("---------------Depois de recuperar os valores-------------");
-			System.out.println(p);
+			System.out.println(dev);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
