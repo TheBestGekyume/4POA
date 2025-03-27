@@ -8,7 +8,7 @@ public class AgendaController {
     private List<Anotacao> anotacoes;
     private AgendaView view;
     private LeituraEscritaArquivo persistencia;
-    private static final String CAMINHO_ARQUIVO = "data/arq.txt";
+    private static final String CAMINHO_ARQUIVO = "agenda/data/arq.txt";
     private static final String SENHA = "minha senha muito segura";
 
     public AgendaController(AgendaView view) {

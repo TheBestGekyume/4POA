@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LeituraEscritaArquivo {
-    private static final String CAMINHO_ARQUIVO = "data/arq.txt";
+    private static final String CAMINHO_ARQUIVO = "agenda/data/arq.txt";
 
     public List<Anotacao> lerAnotacoes() {
         List<Anotacao> anotacoes = new ArrayList<>();
