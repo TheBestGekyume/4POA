@@ -29,7 +29,7 @@ public class LeituraEscritaArquivo {
 
     public void salvarAnotacao(Anotacao anotacao) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(CAMINHO_ARQUIVO, true))) {
-            bw.write(anotacao.toFileString()); // Mantendo o formato no arquivo
+            bw.write(anotacao.toFileString()); 
             bw.newLine();
         } catch (IOException e) {
             e.printStackTrace();

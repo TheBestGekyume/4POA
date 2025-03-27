@@ -1,14 +1,15 @@
 package pjrLeituraEscrita;
 
-import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class AgendaController {
     private List<Anotacao> anotacoes;
     private AgendaView view;
     private LeituraEscritaArquivo persistencia;
     private static final String CAMINHO_ARQUIVO = "data/arq.txt";
+    private static final String SENHA = "minha senha muito segura";
 
     public AgendaController(AgendaView view) {
         this.view = view;
@@ -17,8 +18,12 @@ public class AgendaController {
     }
 
     public void iniciar() {
+        if (!autenticarUsuario()) {
+            System.out.println("Senha incorreta. Encerrando o programa...");
+            return;
+        }
+        
         boolean rodando = true;
-
         while (rodando) {
             int opcao = view.mostrarMenu();
             switch (opcao) {
@@ -39,6 +44,13 @@ public class AgendaController {
                     System.out.println("Opção inválida.");
             }
         }
+    }
+
+    private boolean autenticarUsuario() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Digite a senha para acessar a agenda: ");
+        String senhaDigitada = scanner.nextLine();
+        return SENHA.equals(senhaDigitada);
     }
 
     private void adicionarAnotacao() {
@@ -64,36 +76,4 @@ public class AgendaController {
 
         view.exibirAnotacoes(encontrados);
     }
-    public List<Anotacao> lerAnotacoes() {
-        List<Anotacao> anotacoes = new ArrayList<>();
-
-        try (BufferedReader br = new BufferedReader(new FileReader(CAMINHO_ARQUIVO))) {
-            String linha;
-            while ((linha = br.readLine()) != null) {
-                Anotacao anotacao = Anotacao.fromString(linha);
-                if (anotacao != null) {
-                    anotacoes.add(anotacao);
-                }
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("Arquivo não encontrado. Criando um novo.");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return anotacoes;
-    }
-
-    public void salvarAnotacao(Anotacao anotacao) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(CAMINHO_ARQUIVO, true))) {
-            bw.write(anotacao.toFileString()); // Mantendo o formato no arquivo
-            bw.newLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 }
-
-
-
-

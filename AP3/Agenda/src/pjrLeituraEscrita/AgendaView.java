@@ -10,6 +10,12 @@ public class AgendaView {
         scanner = new Scanner(System.in);
     }
 
+    public boolean solicitarSenha(String senhaCorreta) {
+        System.out.print("Digite a senha para acessar a agenda: ");
+        String senhaDigitada = scanner.nextLine();
+        return senhaDigitada.equals(senhaCorreta);
+    }
+
     public int mostrarMenu() {
         System.out.println("\n===== AGENDA DE ANOTAÇÕES =====");
         System.out.println("1. Adicionar Anotação");
@@ -21,7 +27,7 @@ public class AgendaView {
     }
 
     public Anotacao obterDadosAnotacao() {
-        scanner.nextLine(); // Limpar buffer
+        scanner.nextLine();
         System.out.print("Título: ");
         String titulo = scanner.nextLine();
         System.out.print("Descrição: ");
@@ -34,7 +40,7 @@ public class AgendaView {
     }
 
     public String solicitarTituloParaBusca() {
-        scanner.nextLine(); // Limpar buffer
+        scanner.nextLine();
         System.out.print("Digite o título da anotação: ");
         return scanner.nextLine();
     }
